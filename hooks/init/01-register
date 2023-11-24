@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ $- == *i* ]]; then
+
+  if command -v hstr &>/dev/null; then
+
+    shopt -s histappend # append new history items to .bash_history
+
+    export HSTR_CONFIG=hicolor,raw-history-view
+    export HISTCONTROL=ignorespace # leading space hides commands from history
+    export HISTFILESIZE=500000     # increase history file size (default is 500)
+    export HISTSIZE=${HISTFILESIZE}
+
+    # immediately send to history
+    export PROMPT_COMMAND=(
+      "history -a"
+      "history -n"
+      "${PROMPT_COMMAND[@]}"
+    )
+
+    bind '"\C-r": "\C-a hstr -- \C-j"' # bind hstr to Ctrl-r
+
+  fi
+
+fi

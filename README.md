@@ -68,7 +68,6 @@ The plugin:
 ## Requirements
 
 - hstr (install through your distribution's package manager)
-- bash
 
 ## Contributing
 
